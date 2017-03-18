@@ -1,0 +1,61 @@
+<div class="panel">
+	<div class="panel_header">
+		<div class="panel_title">Session: {{session.dateTime}} </div>
+		<div class="panel_release">{{film.title}} {{#film.startAt}} Time: {{film.startAt}}{{/film.startAt}} {{#film.duration}}Duration: {{film.duration}} {{/film.duration}}</div>
+		<div class="panel_subtitle">
+			<div class="panel_subtitle_caption">Theater title:</div>
+			<div class="panel_subtitle_text">{{theater.name}}</div>
+		</div>
+		<div class="panel_subtitle">
+			<div class="panel_subtitle_caption">Address:</div>
+			<div class="panel_subtitle_text">{{theater.location}}</div>
+		</div>
+		<div class="panel_subtitle">
+			<div class="panel_subtitle_caption">Phone:</div>
+			<div class="panel_subtitle_text">{{theater.phone}}</div>
+		</div>
+	</div>
+	<div class="panel_body">
+		<div class="plan">
+			<div class="plan_wrapper">
+				<div id="plan">
+					<img src="../theatres/plans/october_plans.png" alt="">
+				</div>
+			</div>
+		</div>
+		<div class="tickets_wrapper">
+			<div class="ticket_wrap">
+				<div class="ticket">
+					<h1>Session info:</h1>
+					<hr>
+					<span class="ticket_title">Total tickets:<span
+						id="total_tickets"> {{theater.seatNumber}}</span></span>
+					<hr>
+					<span class="ticket_title">Sold: {{theater.seatSold}}</span>
+					<span class="ticket_title">Reserved: {{theater.seatReserved}}</span>
+					<span class="ticket_title">Free: {{theater.seatFree}}</span>
+				</div>
+			</div>
+			<div class="ticket_wrap">
+				<div class="ticket">
+					<h1>Tickets:</h1>
+					<hr>
+					<span class="ticket_title">Selected seats:</span>
+					<span id="list_of_seats" class="ticket_row">Not selected.</span>
+					<hr>
+					<span class="ticket_title">Total cost:</span>
+					<span id="total_cost" class="ticket_title" style="float: right;">BYR 0.00</span>
+				</div>
+			</div>
+			<div class="ticket_wrap">
+				<div class="ticket">
+					<h1>Press to completed:</h1>
+					<hr>
+					<div class="box">
+						<a class="button" href="#pop_up_message">Booking</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

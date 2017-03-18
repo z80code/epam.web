@@ -1,0 +1,626 @@
+/* --------------- styles ---------*/
+html {
+    min-height: 100%;
+}
+
+header img {
+    padding: 0;
+}
+
+header > img {
+    border-radius: 20px;
+    width: 100%;
+}
+
+header {
+    color: #fff;
+    font-style: italic;
+    text-align: right;
+    font-family: 'Lobster', cursive;
+    padding: 0 5px;
+}
+
+body {
+    background-color: #666;
+    padding-top: 50px;
+    font-size: 14px;
+}
+
+nav {
+    text-transform: uppercase;
+    font-family: Arial, serif;
+    font-weight: normal;
+}
+
+.container_left {
+    padding-left: 23px;
+    background: url('images/container_left.png') repeat-y left;
+}
+
+.container_right {
+    padding-right: 23px;
+    background: url('images/container_right.png') repeat-y right;
+}
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,1);
+}
+#login-dp .help-block{
+    font-size:12px
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}
+
+.panel {
+    border: none;
+    margin: 20px 0;
+    overflow: hidden;
+    background: #E5E5E5;
+    border-radius: 15px;
+}
+
+.panel_header {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    padding: 10px;
+    background: #FFF;
+}
+
+.panel_title {
+    display: inline;
+    float: left;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.panel_release {
+    margin-left: 0.5em;
+    display: inline;
+    /*float: right;*/
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.panel_duration {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.panel_subtitle {
+    clear: both;
+}
+
+.panel_subtitle_caption {
+    font-size: 1.2em;
+    display: inline-block;
+}
+
+.panel_subtitle_text {
+    display: inline-block;
+    padding-left: 5px;
+    font-size: 1.3em;
+}
+
+.panel_body {
+    clear: both;
+}
+
+.img_wrapper {
+    float: left;
+}
+
+.panel_image img {
+    position: relative;
+    display: block;
+    margin: 10px 20px;
+    box-shadow: 5px 5px 4px gray;
+}
+
+.panel_text > h2 {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.panel_text p {
+    padding: 10px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    min-width: 150px;
+    font-size: 16px;
+    /* overflow: hidden; */
+    text-indent: 20px;
+}
+
+.panel_text p a {
+    color: blue;
+}
+.panel_footer {
+    clear: both;
+    overflow: hidden;
+    background: #999;
+}
+
+.theater_sessions {
+    display: table;
+    width: 100%;
+    background: #222;
+    margin: 5px 0;
+}
+
+.theater_name {
+    display: table-row;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 14px;
+    text-align: center;
+    color: #EEE;
+    background: #111;
+    padding: 2px 0;
+}
+
+.sessions_items_block {
+    text-align: center;
+}
+
+.sessions_item {
+    display: inline-block;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 19px;
+    padding: 4px;
+    margin: 1px;
+    color: #FFF;
+    background: #444;
+    border-radius: 10px;
+    border: 1px solid #B6B6B6;
+    border-right: 3px black;
+    border-bottom: 3px black;
+}
+
+.sessions_item:hover {
+    background: #888;
+    cursor: pointer;
+}
+
+.session_weekday {
+    font-size: 14px;
+    color: #FFF2BD;
+}
+
+.session_time {
+    font-size: 20px;
+    color: #FFF44A;
+}
+
+main {
+
+}
+
+footer {
+    clear: both;
+}
+
+.plan img {
+    overflow: auto;
+    background: #ddd;
+}
+
+.plan {
+    margin: 5px auto;
+    border: solid 2px #999;
+    overflow: auto;
+    padding-top: 3px;
+    text-align: center;
+    background: #aaa;
+}
+
+.plan_wrapper {
+    display: inline-block;
+}
+
+#plan {
+    width: 570px;
+    position: relative;
+}
+
+.seat_status_free {
+    position: absolute;
+    border: solid transparent 3px;
+    height: 18px;
+    width: 22px;
+    border-radius: 5px 5px 0 0;
+    background: #0A0;
+}
+
+.seat_status_reserved {
+    position: absolute;
+    border: solid transparent 3px;
+    height: 18px;
+    width: 22px;
+    border-radius: 5px 5px 0 0;
+    background: yellow;
+}
+
+.seat_status_sold {
+    position: absolute;
+    border: solid transparent 3px;
+    height: 18px;
+    width: 22px;
+    border-radius: 5px 5px 0 0;
+    background: black;
+}
+
+.seat_status_selected {
+    position: absolute;
+    border: solid transparent 3px;
+    height: 18px;
+    width: 22px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 10px 10px white;
+    background: red;
+    z-index: 1;
+}
+
+.seat_status_sold:hover, .seat_status_reserved:hover {
+    /* border: solid red 2px; */
+    cursor: not-allowed;
+}
+
+.seat_status_selected:hover {
+    box-shadow: 0 0 10px 10px grey;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.seat_status_free:hover {
+    /* border: solid 3px red; */
+    cursor: pointer;
+    box-shadow: 0 0 10px 10px white;
+    z-index: 2;
+}
+
+.seat_status_free:hover .popup_info, .seat_status_selected:hover .popup_info {
+    visibility: visible;
+    color: #000;
+    box-shadow: 0 0 10px 5px white;
+    background: #FFFFFF;
+    opacity: 1;
+}
+
+.popup_info {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 16px;
+    width: 138px;
+    padding: 5px;
+    border-radius: 27px;
+    position: absolute;
+    bottom: 25px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-out;
+}
+
+.tickets_wrapper {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+
+}
+
+.ticket_wrap {
+    vertical-align: top;
+}
+
+.ticket hr {
+    background: grey;
+    color: white;
+}
+
+.ticket hr.dotted {
+    background: #000;
+    color: white;
+}
+
+.ticket {
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-weight: bold;
+    background: white;
+    padding: 15px;
+    outline: 14px dotted #e5e5e5;
+    outline-offset: -7px;
+    min-height: 137px;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.ticket_title {
+    display: block;
+    text-align: left;
+    font-size: 1.7em;
+}
+
+.ticket_row {
+    display: inline-block;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 1.6em;
+}
+
+.list_of_seats {
+    font-size: 1em;
+    border: 1px black solid;
+}
+
+.seat_wraper {
+    display: inline-block;
+    margin: 5px;
+    background: #D3E600;
+    text-align: left;
+}
+
+.seat_wraper:hover {
+    box-shadow: 0 0 10px 5px grey;
+}
+
+.seat {
+    border-left: dotted grey 4px;
+    padding: 3px 5px;
+}
+
+.seat .col {
+    display: inline-block;
+}
+
+.seat .txt {
+    color: #060;
+    padding-right: 10px;
+    text-transform: uppercase;
+    font-size: 0.7em;
+}
+
+.seat .number {
+    font-weight: bold;
+    text-align: right;
+    font-size: 1.2em;
+    padding-right: 5px;
+}
+
+.seat .cost {
+    border-left: dotted grey 4px;
+    padding-left: 10px;
+    font-weight: bold;
+    text-align: right;
+    font-size: 1em;
+    color: red;
+    padding-right: 5px;
+}
+
+#total_tickets {
+    text-align: right;
+}
+
+.ticket h1 {
+    font-family: "Arial Narrow", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+}
+
+/* message window */
+.box {
+    width: 120px;
+    height: 45px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid #fff;
+    border-radius: 20px/50px;
+    background-clip: padding-box;
+    text-align: center;
+}
+
+.button {
+    font-size: 1.3em;
+    padding: 15px;
+    margin: 0 auto;
+    border: 3px solid #06D85F;
+    border-radius: 20px/50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease-out;
+}
+
+a.button, a:visited.button {
+    color: black;
+}
+
+.button:hover {
+    background: #06D85F;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+    z-index: 999;
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    top: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 3s ease-in-out;
+}
+
+.popup h2 {
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 1.5em;
+}
+
+.popup .close {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    transition: all 200ms;
+    font-size: 40px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .close:hover {
+    color: red;
+}
+
+.popup .content {
+    padding-top: 15px;
+    max-height: 30%;
+    font-family: Arial, saint-serif, sans-serif;
+    font-size: 1em;
+    overflow: auto;
+}
+
+.buttons {
+    text-align: right;
+}
+
+.buttons .button {
+    width: 27%;
+    font-size: 1em;
+    border-radius: 5px;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.btn_cancel {
+    border: #FFCC00 solid 3px;
+}
+
+.btn_cancel:hover {
+    background: #FFCC00;
+}
+
+body {
+    /* -webkit-touch-callout: none; */
+    -webkit-user-select: none;
+    /* -khtml-user-select: none;  */
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+@media screen and (max-width: 640px) {
+
+    .img_wrapper {
+        float: none;
+        display: flex;
+        overflow: visible;
+    }
+
+    .panel_image {
+        margin: 10px auto;
+    }
+
+    .panel_image img {
+        display: block;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .box {
+        width: 70%;
+    }
+
+    .popup {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    nav > ul > li {
+        float: none;
+        display: block;
+        width: 100%;
+    }
+
+    nav > ul > li > a {
+        width: 100%;
+        padding: 10px 5px;
+    }
+
+    .sessions_item {
+        padding: 0;
+        width: 100%;
+        font-size: 24px;
+    }
+
+    .img_wrapper {
+        clear: both;
+        display: flex;
+        overflow: visible;
+    }
+
+    .panel_image {
+        margin: 10px auto;
+    }
+
+    .panel_image img {
+        width: 90%;
+        display: block;
+    }
+}

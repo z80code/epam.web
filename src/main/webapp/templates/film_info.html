@@ -1,0 +1,37 @@
+<div class="panel">
+	<div class="panel_header">
+		<div class="panel_title">{{title}}</div>
+		<div class="panel_release">&#9675;{{year}}</div>
+		{{#duration}}
+		<div class="panel_duration">&#9675;{{duration}}</div>
+		{{/duration}}
+		<div class="panel_subtitle">
+			<div class="panel_subtitle_caption">Director:</div>
+			<div class="panel_subtitle_text">{{director.name}}</div>
+		</div>
+		<div class="panel_subtitle">
+			<div class="panel_subtitle_caption">Casts:</div>
+			<div class="panel_subtitle_text">{{actors.names}}</div>
+		</div>
+		<div class="panel_subtitle">
+			<div class="panel_subtitle_caption">Genres:</div>
+			<div class="panel_subtitle_text">{{genres.names}}</div>
+		</div>
+	</div>
+	<div class="panel_body">
+		<div class="img_wrapper">
+			<div class="panel_image">
+				<img src="{{image}}"></div>
+		</div>
+		<div class="panel_text"><h2>Plot</h2>
+			{{{description}}}</div>
+		<div class="panel_footer">
+			<div class="theater_sessions">
+				<div class="theater_name">October</div>
+				<div id="{{id_session_block}}" class="sessions_items_block">
+				</div>
+				<div class="theater_name">sessions</div>
+			</div>
+		</div>
+	</div>
+</div>
