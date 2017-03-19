@@ -235,9 +235,14 @@ nav {
 main {
 
 }
-
 footer {
+    text-align: center;
+}
+
+footer span {
     clear: both;
+    padding: 0 10px;
+    color: #eee;
 }
 
 .plan img {

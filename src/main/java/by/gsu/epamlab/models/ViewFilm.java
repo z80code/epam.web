@@ -1,10 +1,11 @@
 package by.gsu.epamlab.models;
 
-import by.gsu.epamlab.dao.models.Actor;
-import by.gsu.epamlab.dao.models.Director;
-import by.gsu.epamlab.dao.models.Genre;
+import by.gsu.epamlab.dao.CinemaDAO;
+import by.gsu.epamlab.dao.models.*;
 
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ViewFilm {
@@ -17,6 +18,8 @@ public class ViewFilm {
     private String description;
     private String image;
     private List<Genre> genres;
+
+    private transient Film film;
 
     public ViewFilm(int filmId,
                     String title,
@@ -35,6 +38,11 @@ public class ViewFilm {
         this.image = image;
         this.genres = genres;
     }
+
+    public ViewFilm(Film film) {
+        this.film = film;
+    }
+
 
     public int getFilmId() {
         return filmId;
@@ -98,5 +106,37 @@ public class ViewFilm {
 
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
+    }
+
+    public ViewFilm getInstance(CinemaDAO cinemaService) throws SQLException {
+        List<Cast> casts = cinemaService.getCastRepository().getByFilmId(film.getId());
+        List<Integer> actorsIdsList = new ArrayList<>(casts.size());
+        for (Cast cast : casts) {
+            actorsIdsList.add(cast.getActorId());
+        }
+        Integer[] actorsIds = actorsIdsList.toArray(new Integer[0]);
+
+        List<Actor> actors = cinemaService.getActorRepository().getByIds(actorsIds);
+
+        List<FilmGenre> filmGenres = cinemaService.getFilmGenreRepository().getByFilmId(film.getId());
+
+        List<Integer> genresIdsList = new ArrayList<>(filmGenres.size());
+        for (FilmGenre filmGenre : filmGenres) {
+            genresIdsList.add(filmGenre.getGenreId());
+        }
+        Integer[] filmGenreIds = genresIdsList.toArray(new Integer[0]);
+
+        List<Genre> genres = cinemaService.getGenreRepository().getByIds(filmGenreIds);
+        return new ViewFilm(
+                film.getId(),
+                film.getTitle(),
+                film.getRelease(),
+                cinemaService.getDirectorRepository().getById(film.getDirectorId()),
+                actors,
+                film.getDescription(),
+                film.getImage(),
+                genres
+
+        );
     }
 }

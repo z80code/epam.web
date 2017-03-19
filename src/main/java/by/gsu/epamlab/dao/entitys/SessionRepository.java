@@ -14,6 +14,7 @@ public class SessionRepository extends AbstractRepository<Session> {
 
     private final static String SELECT_ALL = "select * from sessions";
     private final static String SELECT_BY_ID = "select * from sessions where sessions.id=?";
+    private final static String SELECT_BY_PATH = "select * from sessions where 1 limit ?, ?";
     private final static String SELECT_ALL_BY_FILM_ID = "select * from sessions where sessions.filmId=?";
     private final static String SELECT_BY_SESSION = "select * from sessions where sessions.filmId=? and sessions.dateTime=? and sessions.theaterId=?";
     private final static String DELETE_BY_ID = "delete * from sessions where sessions.id=?";
@@ -81,6 +82,15 @@ public class SessionRepository extends AbstractRepository<Session> {
     public List<Session> getAll() throws SQLException {
         List<Session> sessions = new ArrayList<>();
         ResultSet rs = request(SELECT_ALL);
+        while (rs.next()) {
+            sessions.add(new Session(rs));
+        }
+        return sessions;
+    }
+
+    public List<Session> getAll(int firstSession, int numberSession) throws SQLException {
+        List<Session> sessions = new ArrayList<>();
+        ResultSet rs = prepareRequest(SELECT_BY_PATH, firstSession, numberSession);
         while (rs.next()) {
             sessions.add(new Session(rs));
         }

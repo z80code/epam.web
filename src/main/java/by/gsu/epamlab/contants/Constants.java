@@ -30,6 +30,7 @@ public class Constants {
 	public final static String ANY_SUB_PATH = "*";
 	public static final String ANY_URL = CURRENT_URI + ANY_SUB_PATH;
 	public static final String FORWARD_LOCATION = "../";
+	public static final String EDIT_LOCATION = "/edit";
 
 	/**
 	 *
@@ -37,6 +38,8 @@ public class Constants {
 	public static final String USER = "user";
 	public final static String USER_PAGE_URL = CURRENT_URI + USER;
 	public static final String MODERATOR = "moderator";
+	public final static String MODERATOR_PAGE_URL = CURRENT_URI + MODERATOR;
+	public final static String MODERATOR_EDIT_URL = CURRENT_URI + MODERATOR + EDIT_LOCATION;
 	public static final String ADMIN = "admin";
 
 	/**
@@ -64,6 +67,7 @@ public class Constants {
 	public static final String MODERATOR_ANY = "/moderator/*";
 	public static final String MODERATOR_RESERVING = "/moderator/reserving";
 	public static final String MODERATOR_INDEX_HTML = "/moderator/index.html";
+	public static final String MODERATOR_EDIT_HTML = "/moderator/moderator.html";
 	public static final String MODERATOR_RECEIVE_HTML = "/moderator/receive.html";
 
 	/**
@@ -84,6 +88,8 @@ public class Constants {
 	public final static String API_RESERVE_URL = "/api/reserve/";
 	public final static String API_FILM_URL = "/api/film/";
 	public final static String API_SESSION_URL = "/api/session/";
+	public final static String API_MODERATOR_URL = "/api/moderator/";
+
 
 	/**
 	 * date/time format string

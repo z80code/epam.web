@@ -7,13 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static by.gsu.epamlab.contants.Constants.MODERATOR_INDEX_HTML;
-import static by.gsu.epamlab.contants.Constants.MODERATOR_PAGE_URL;
+import static by.gsu.epamlab.contants.Constants.*;
 
-@WebServlet(MODERATOR_PAGE_URL)
-public class ModeratorController extends HttpServlet {
+
+@WebServlet(MODERATOR_EDIT_URL)
+public class ModeratorEditController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher(MODERATOR_INDEX_HTML).forward(req, resp);
+        getServletContext().getRequestDispatcher(MODERATOR_EDIT_HTML).forward(req, resp);
     }
 }

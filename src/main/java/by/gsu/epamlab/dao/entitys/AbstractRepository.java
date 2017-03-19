@@ -17,7 +17,11 @@ abstract class AbstractRepository<T> implements IRepository<T> {
     private void addParameters(Object... objs) throws SQLException {
         preSt.clearParameters();
         for (int i = 0; i < objs.length; i++) {
-            preSt.setString(i+1, objs[i].toString());
+            if(objs[i] instanceof Integer) {
+                preSt.setInt(i + 1, (Integer) objs[i]);
+            } else {
+                preSt.setString(i + 1, objs[i].toString());
+            }
         }
     }
 

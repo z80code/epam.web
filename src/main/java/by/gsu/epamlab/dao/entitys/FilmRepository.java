@@ -1,6 +1,7 @@
 package by.gsu.epamlab.dao.entitys;
 
 import by.gsu.epamlab.dao.models.Film;
+import by.gsu.epamlab.models.ViewFilm;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,6 +14,7 @@ public class FilmRepository extends AbstractRepository<Film> {
 
     private final static String SELECT_ALL = "select * from films";
     private final static String SELECT_BY_ID = "select * from films where films.id=?";
+    private final static String SELECT_BY_PATH = "select * from films where 1 limit ?, ?";
     private final static String SELECT_BY_TITLE_RELEASE = "select * from films where films.title=? and films.release=?";
     private final static String DELETE_BY_ID = "deletePlace from films where films.id=?";
     private final static String ADD_USER = "insert into users(title, release, directorId, description, image) values(?,?,?,?,?)";
@@ -69,6 +71,15 @@ public class FilmRepository extends AbstractRepository<Film> {
     public List<Film> getAll() throws SQLException {
         List<Film> films = new ArrayList<>();
         ResultSet rs = request(SELECT_ALL);
+        while (rs.next()) {
+            films.add(new Film(rs));
+        }
+        return films;
+    }
+
+    public List<Film> getAll(int firstFilm, int numberFilms) throws SQLException {
+        List<Film> films = new ArrayList<>();
+        ResultSet rs = prepareRequest(SELECT_BY_PATH, firstFilm, numberFilms);
         while (rs.next()) {
             films.add(new Film(rs));
         }

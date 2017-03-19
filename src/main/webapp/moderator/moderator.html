@@ -10,6 +10,7 @@
     <script src="../js/mustache.min.js"></script>
     <script src="../js/cinema_main.js"></script>
     <script src="../js/cinema_moderator.js"></script>
+    <script src="../js/jquery.twbsPagination.js"></script>
     <meta name=viewport content="width=device-width, initial-scale=1">
 </head>
 <body onload="moderator.run()">
@@ -31,9 +32,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li id="item_menu_all" class="active"><a href="#" onclick="cinema.getFilms(selectionType.ALL)">films</a></li>
+                    <li id="item_menu_all" class="active"><a href="#"
+                                                             onclick="cinema.getFilms(selectionType.ALL)">films</a></li>
                     <li id="item_menu_today"><a href="#" onclick="cinema.getFilms(selectionType.TODAY)">today</a></li>
-                    <li id="item_menu_tomorrow"><a href="#" onclick="cinema.getFilms(selectionType.TOMORROW)">tomorrow</a></li>
+                    <li id="item_menu_tomorrow"><a href="#"
+                                                   onclick="cinema.getFilms(selectionType.TOMORROW)">tomorrow</a></li>
                     <li id="item_menu_weak"><a href="#" onclick="cinema.getFilms(selectionType.WEAK)">weak</a></li>
                     <li><a href="moderator.html">Admin panel</a></li>
                 </ul>
@@ -41,6 +44,9 @@
                 </ul>
                 <script id="user_log_temp" type="temp">
 						<li><a href="../logout">{{userName}}, logout</a></li>
+
+
+
 
                 </script>
                 <script id="user_not_log_temp" type="temp">
@@ -73,6 +79,9 @@
 							</li>
 						</ul>
 					</li>
+
+
+
                 </script>
                 <script>
                     cinema.getLoginData(document.getElementById("user_log_temp"), document.getElementById("user_not_log_temp"), loginPlace);
@@ -99,7 +108,7 @@
                 <!-- footer -->
                 <footer>
                     <div>
-                        <span>&#x24B8;</span><span>EpamTraining</span><span>Prymachou Pavel</span>
+                        <span>&#x24B8;</span><span><strong>EpamTraining.</strong></span><span>Team code: <strong><i>Yaraslauski Maksim, Prymachou Pavel</i></strong></span><span>&#x24B8;</span>
                     </div>
                 </footer>
                 <!-- /footer -->
@@ -107,13 +116,76 @@
         </div>
     </div>
 </div>
-<div class="collapse navbar-collapse">
-    <ul class="nav navbar-nav">
-        <li id="item_menu_all" class="active"><a href="#" onclick="moderator.getEntity(entity.FILM)">films</a></li>
-        <li id="item_menu_today"><a href="#" onclick="moderator.getFilms(selectionType.TODAY)">today</a></li>
-        <li id="item_menu_tomorrow"><a href="#" onclick="moderator.getFilms(selectionType.TOMORROW)">tomorrow</a></li>
-        <li id="item_menu_weak"><a href="#" onclick="moderator.getFilms(selectionType.WEAK)">weak</a></li>
-        <li><a href="moderator.html">Admin panel</a></li>
-</div>
+
+<script id="entity_menu" type="template">
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+            {{{items}}}
+        </ul>
+    </div>
+</script>
+<script id="entity_menu_item" type="template">
+    <li id="{{menu_item_id}}"><a href="#" onclick="{{methodOnClick}}">{{name}}</a></li>
+</script>
+<script id="table_entity_head" type="template">
+    <thead>
+    <tr>
+        {{#fields}}
+        <th>{{.}}</th>
+        {{/fields}}
+    </tr>
+    </thead>
+</script>
+<script id="table_entity_films" type="template">
+    <h2>List of {{name}}</h2>
+    <table class="table table-hover">
+        {{{head}}}
+        <tbody>
+        {{#items}}
+        <tr>
+            <td>{{filmId}}</td>
+            <td>{{title}}</td>
+            <td>{{date}}</td>
+            <td>{{director.name}}</td>
+            <td>{{actors}}</td>
+            <td>{{description}}</td>
+            <td>{{image}}</td>
+            <td>{{genres}}</td>
+            <td><button onclick="moderator.edit({{filmId}})" class="btn btn-warning">Edit</button></td>
+            <td><button onclick="moderator.delete({{filmId}})" class="btn btn-danger">Delete</button></td>
+        </tr>
+        {{/items}}
+        </tbody>
+    </table>
+</script>
+
+<script id="table_entity_sessions" type="template">
+    <h2>List of {{name}}</h2>
+    <table class="table table-hover">
+        {{{head}}}
+        <tbody>
+        {{#items}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{filmName}}</td>
+            <td>{{dateTime}}</td>
+            <td>{{theaterName}}</td>
+            <td><button onclick="moderator.edit({{id}})" class="btn btn-warning">Edit</button></td>
+            <td><button onclick="moderator.delete({{id}})" class="btn btn-danger">Delete</button></td>
+        </tr>
+        {{/items}}
+        </tbody>
+    </table>
+</script>
+<script id="table_container_temp" type="template">
+    <div class="panel" style="padding: 30px;">
+        <div id="table_container">
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination" id="pagination"></ul>
+        </nav>
+    </div>
+</script>
+
 </body>
 </html>

@@ -8,57 +8,72 @@ import by.gsu.epamlab.dao.models.Theater;
 import java.util.List;
 
 public class ViewSessionInfo {
-	private Session session;
-	private Theater theater;
-	private Film film;
-	private List<Place> placeMap;
-	private Integer[] userBookingIds;
 
-	public ViewSessionInfo(Session session, Theater theater, Film film, List<Place> placeMap, Integer[] userBookingIds) {
-		this.session = session;
-		this.theater = theater;
-		this.film = film;
-		this.placeMap = placeMap;
-		this.userBookingIds = userBookingIds;
-	}
+    private int id;
+    private Session session;
+    private Theater theater;
+    private Film film;
+    private List<Place> placeMap;
+    private Integer[] userBookingIds;
 
-	public Session getSession() {
-		return session;
-	}
+    public ViewSessionInfo(int id, Session session, Theater theater, Film film, List<Place> placeMap, Integer[] userBookingIds) {
+        this.id = id;
+        this.session = session;
+        this.theater = theater;
+        this.film = film;
+        this.placeMap = placeMap;
+        this.userBookingIds = userBookingIds;
+    }
 
-	public void setSession(Session session) {
-		this.session = session;
-	}
+    public ViewSessionInfo(Session session, Theater theater, Film film, List<Place> placeMap, Integer[] userBookingIds) {
+        this(0, session, theater, film, placeMap, userBookingIds);
+    }
 
-	public Film getFilm() {
-		return film;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setFilm(Film film) {
-		this.film = film;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public Theater getTheater() {
-		return theater;
-	}
+    public Session getSession() {
+        return session;
+    }
 
-	public void setTheater(Theater theater) {
-		this.theater = theater;
-	}
+    public void setSession(Session session) {
+        this.session = session;
+    }
 
-	public List<Place> getPlaceMap() {
-		return placeMap;
-	}
+    public Film getFilm() {
+        return film;
+    }
 
-	public void setPlaceMap(List<Place> placeMap) {
-		this.placeMap = placeMap;
-	}
+    public void setFilm(Film film) {
+        this.film = film;
+    }
 
-	public Integer[] getUserBookingIds() {
-		return userBookingIds;
-	}
+    public Theater getTheater() {
+        return theater;
+    }
 
-	public void setUserBookingIds(Integer[] userBookingIds) {
-		this.userBookingIds = userBookingIds;
-	}
+    public void setTheater(Theater theater) {
+        this.theater = theater;
+    }
+
+    public List<Place> getPlaceMap() {
+        return placeMap;
+    }
+
+    public void setPlaceMap(List<Place> placeMap) {
+        this.placeMap = placeMap;
+    }
+
+    public Integer[] getUserBookingIds() {
+        return userBookingIds;
+    }
+
+    public void setUserBookingIds(Integer[] userBookingIds) {
+        this.userBookingIds = userBookingIds;
+    }
 }

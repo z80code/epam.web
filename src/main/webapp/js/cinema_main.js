@@ -161,7 +161,6 @@ var cinema = (function () {
         var targetSessionBlock;
 
         this.run = function () {
-            targetSessionBlock = document.getElementById("render_context");
             this.getFilms(selectionType.ALL);
         };
 
@@ -173,6 +172,7 @@ var cinema = (function () {
         }
 
         function updateContext(selectType) {
+            targetSessionBlock = document.getElementById("render_context");
             var TEMPLATES_PATH = "templates/";
             var FILM_INFO_TEMPLATE = (userDate.userName ? "../" : "") + TEMPLATES_PATH + "film_info.html";
             ajax.get(FILM_INFO_TEMPLATE, function (filmInfoTemplate) {
@@ -198,6 +198,8 @@ var cinema = (function () {
                         });
 
                         targetSessionBlock.innerHTML = '';
+                        updatedItems = viewDataFilms.length;
+
                         viewDataFilms.forEach(function (film) {
 
                             sessionsList["_" + film.filmId] = null;
@@ -229,6 +231,27 @@ var cinema = (function () {
                     }
                 });
             });
+        }
+
+        var updatedItems = 0;
+
+        function checkItemUpdate() {
+
+            if (updatedItems == 0 && targetSessionBlock.innerHTML.length == 0) {
+                var viewEmpty = new Element("div", {
+                    "class": "panel",
+                    "style": "padding-top: 20px;"
+                });
+                var subViewEmpty = new Element("div", {
+                    "class": "alert alert-warning",
+                    "id": "",
+                    "onclick": "#"
+                });
+                subViewEmpty.mainTag.innerHTML = "<strong>Warning!</strong>" + " " + "No found items here to display.";
+                viewEmpty.addChild(subViewEmpty);
+                targetSessionBlock.appendChild(viewEmpty.mainTag);
+            }
+
         }
 
         this.getFilms = function (typeOfSelection) {
@@ -278,7 +301,7 @@ var cinema = (function () {
                             var today = new Date();
                             var lastDay = new Date();
                             lastDay.setDate(lastDay.getDate());
-                            lastDay.setHours(24,0,0,0);
+                            lastDay.setHours(24, 0, 0, 0);
                             return (item.dateTime >= today && item.dateTime < lastDay);
                         });
                         if (sessions.length != 0) {
@@ -292,8 +315,8 @@ var cinema = (function () {
                         sessions = sessions.filter(function (item) {
                             var today = new Date();
                             var lastDay = new Date();
-                            lastDay.setDate(lastDay.getDate()+1);
-                            lastDay.setHours(24,0,0,0);
+                            lastDay.setDate(lastDay.getDate() + 1);
+                            lastDay.setHours(24, 0, 0, 0);
                             return (item.dateTime >= today && item.dateTime < lastDay);
                         });
                         if (sessions.length != 0) {
@@ -309,7 +332,7 @@ var cinema = (function () {
                             var today = new Date();
                             var lastDay = new Date();
                             lastDay.setDate(lastDay.getDate() + 7);
-                            today.setHours(24,0,0,0);
+                            today.setHours(24, 0, 0, 0);
                             return (item.dateTime >= today && item.dateTime < lastDay);
                         });
                         if (sessions.length != 0) {
@@ -327,10 +350,9 @@ var cinema = (function () {
                     }
                 }
 
-
             } else {
                 if (sessionRequestResult.status == "AUTH_ERROR") {
-                    targetSessionBlock.innerHTML = Mustache.render(filmInfoTemplate, film);
+                    targetSessionBlock.innerHTML += Mustache.render(filmInfoTemplate, film);
                     sessionBlocks = document.getElementById(film.filmId);
                     ticketElem = new Element("div", {
                         "class": "alert alert-warning",
@@ -343,8 +365,8 @@ var cinema = (function () {
                 // TODO show error
                 //
             }
-
-
+            updatedItems--;
+            checkItemUpdate();
         }
     }
 
