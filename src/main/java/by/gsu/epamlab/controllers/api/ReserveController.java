@@ -94,7 +94,7 @@ public class ReserveController extends CinemaHttpController {
         String str = req.getReader().readLine();
         List<Place> selectedPlaceList = Arrays.asList(gson.fromJson(str, Place[].class));
 
-            if (selectedPlaceList.size() > 0 && argString.length()>0) {
+            if (selectedPlaceList.size() >= 0 && argString.length()>0) {
                 reserveLogic = new ReserveLogic(getCinemaService());
                 Integer[] indexes = Helper.csvIndexesParser(argString);
                 ViewSessionInfo returnSessionInfo =  reserveLogic.setSessionData(user.getUserId(), indexes[IndexPosition.ZERO.getIndex()], selectedPlaceList);
