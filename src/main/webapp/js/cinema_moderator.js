@@ -25,7 +25,7 @@ moderator = new function Moderator() {
 
         for (var item in entity) {
             objItem.menu_item_id = ITEM_MENU_ID_PREFIX + item;
-            objItem.methodOnClick = "moderator.getEntity(entity." + item + "); return false;";
+            objItem.methodOnClick = "moderator.getEntity(entity." + item + ", this); return false;";
             objItem.name = item;
             menu_items.push(Mustache.render(menu_item_template, objItem));
         }
@@ -37,26 +37,27 @@ moderator = new function Moderator() {
         table_entity_head_temp = document.getElementById("table_entity_head").innerHTML;
     };
 
-    this.getEntity = function (entity_item) {
+    this.getEntity = function (entity_item, senderId) {
         var size = 10;
         var requestUrl = '/api/moderator/' + entity_item.toLowerCase() + '/';
-        table_entity_template = document.getElementById("table_entity_"+ entity_item.toLowerCase()).innerHTML;
+        table_entity_template = document.getElementById("table_entity_" + entity_item.toLowerCase()).innerHTML;
         ajax.get(requestUrl, function (results) {
             var resultsRaw = JSON.parse(results);
             var table_entity_items_count = +resultsRaw.data;
+
             if (resultsRaw.status == "OK") {
+                $('#pagination').twbsPagination('destroy');
                 $(function () {
                     window.pagObj = $('#pagination').twbsPagination({
                         totalPages: table_entity_items_count / size + ((table_entity_items_count % size) != 0 ? 1 : 0),
                         visiblePages: 5,
+                        initiateStartPageClick: true,
                         onPageClick: function (event, page) {
-
+                            updateTable(resultsRaw, entity_item, requestUrl, (page - 1) * 10, size);
                         }
-                    }).on('page', function (event, page) {
-                        updateTable(resultsRaw, entity_item,requestUrl, (page - 1) * 10, size);
-                    });
+                    })
                 });
-                updateTable(resultsRaw, entity_item,requestUrl, 0, 10);
+                //updateTable(resultsRaw, entity_item, requestUrl, 0, 10);
             } else {
                 // TODO error handler
             }
@@ -68,7 +69,7 @@ moderator = new function Moderator() {
     var table_entity_head_temp;
     var table_entity_template;
 
-    function updateTable(resultsRaw, entity_item,requestUrl,  from, size) {
+    function updateTable(resultsRaw, entity_item, requestUrl, from, size) {
         ajax.get(requestUrl + from + ';' + size, function (results) {
             table_container.innerHTML = "";
             resultsRaw = JSON.parse(results, function (key, value) {
@@ -101,11 +102,12 @@ moderator = new function Moderator() {
             }
         });
     }
+
     this.edit = function (itemId) {
-        console.log("edit for "+ itemId);
+        console.log("edit for " + itemId);
     }
     this.delete = function (itemId) {
-        console.log("delete for "+ itemId);
+        console.log("delete for " + itemId);
     }
 };
 

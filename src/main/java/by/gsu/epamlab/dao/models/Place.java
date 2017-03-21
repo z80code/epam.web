@@ -136,5 +136,35 @@ public class Place {
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Place place = (Place) o;
+
+		if (id != place.id) return false;
+		if (seat != place.seat) return false;
+		if (row != place.row) return false;
+		if (theaterId != place.theaterId) return false;
+		if (x != place.x) return false;
+		if (y != place.y) return false;
+		if (cost != place.cost) return false;
+		return section != null ? section.equals(place.section) : place.section == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id;
+		result = 31 * result + seat;
+		result = 31 * result + row;
+		result = 31 * result + (section != null ? section.hashCode() : 0);
+		result = 31 * result + theaterId;
+		result = 31 * result + x;
+		result = 31 * result + y;
+		result = 31 * result + cost;
+		return result;
+	}
 }
 

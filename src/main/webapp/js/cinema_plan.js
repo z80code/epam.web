@@ -6,7 +6,7 @@
             RESERVED: "reserved",
             SOLD: "sold",
             SELECTED: "selected"
-        }
+        };
 
         var selectPlaces = new SelectPlaceHolder();
         var theaterPlaces;

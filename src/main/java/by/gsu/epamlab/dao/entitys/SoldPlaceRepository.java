@@ -14,6 +14,7 @@ public class SoldPlaceRepository extends AbstractRepository<SoldPlace> {
     private final static String SELECT_ALL = "select * from soldPlaces";
     private final static String SELECT_BY_ID = "select * from soldPlaces where soldPlaces.id=?";
     private final static String SELECT_BY_USER_ID_SESSION_ID = "select * from soldPlaces where userId=? and sessionId =?";
+    private final static String SELECT_BY_SESSION_ID = "select * from soldPlaces where sessionId =?";
     private final static String SELECT_BY_USER_PLACE_SESSION = "select * from soldPlaces where userId=? and placeId=? and sessionId=?";
     private final static String DELETE_BY_ID = "delete from soldPlaces where soldPlaces.id=?";
     private final static String ADD_ITEM = "insert into soldplaces(userId, placeId, sessionId) values(?,?,?)";
@@ -77,6 +78,15 @@ public class SoldPlaceRepository extends AbstractRepository<SoldPlace> {
     public List<SoldPlace> getAll() throws SQLException {
         List<SoldPlace> orders = new ArrayList<>();
         ResultSet rs = request(SELECT_ALL);
+        while (rs.next()) {
+            orders.add(new SoldPlace(rs));
+        }
+        return orders;
+    }
+
+    public List<SoldPlace> getUserSession(Integer sessionId) throws SQLException {
+        List<SoldPlace> orders = new ArrayList<>();
+        ResultSet rs = prepareRequest(SELECT_BY_SESSION_ID,  sessionId);
         while (rs.next()) {
             orders.add(new SoldPlace(rs));
         }

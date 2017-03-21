@@ -2,7 +2,7 @@ package by.gsu.epamlab.enums;
 
 public enum SeatState {
 	FREE,
-	RESERVE,
+	RESERVED,
 	SOLD;
 
 	@Override
